@@ -153,16 +153,13 @@ class StartupStackAI {
                 throw new Error(data.error || `HTTP error! status: ${response.status}`);
             }
             
-            // Log successful response
-            console.log(`✅ API response received successfully for operation: ${operation}`);
-            
             // Check if result exists in the response
             if (!data.result) {
                 console.error('API response missing result data:', data);
                 throw new Error('Unexpected API response format: missing result data');
-            }              // Log result length for debugging
-            console.log(`Returning result (length: ${JSON.stringify(data.result).length} chars)`);
-              // Display results in UI if available
+            }
+              
+            // Display results in UI if available
             this.displayResults(operation, data.result, params);
             
             // Operation history is now stored server-side in the ai-operations function
@@ -459,7 +456,6 @@ async function initializeStartupStack() {
         };
 
         window.StartupStack = stack;
-        console.log('StartupStack initialized successfully');
         return stack;
     } catch (error) {
         console.error('Error initializing StartupStack:', error);
