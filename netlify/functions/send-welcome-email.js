@@ -2,7 +2,7 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 exports.handler = async (event, context) => {
-    console.log('Welcome email function triggered');
+    // Removed console.log for production
 
     // Add CORS headers
     const headers = {
@@ -28,10 +28,11 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        console.log('Request body:', event.body);
+        // Removed console.log for production
         const { email, userName } = JSON.parse(event.body);
 
         if (!email) {
+            // Log critical errors only
             console.error('No email provided');
             return {
                 statusCode: 400,
@@ -40,9 +41,7 @@ exports.handler = async (event, context) => {
             };
         }
 
-        // Log SendGrid configuration
-        console.log('SENDGRID_API_KEY exists:', !!process.env.SENDGRID_API_KEY);
-        console.log('URL configured:', process.env.URL);
+        // Removed SendGrid configuration logging for production
 
         const msg = {
             to: email,

@@ -13,7 +13,6 @@ const openai = new OpenAI({
 // Initialize Supabase with service role key to bypass RLS
 // Use service role key for server operations that need to bypass RLS policies
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
-console.log("Using service key:", serviceKey ? "Key available" : "Key missing");
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
@@ -57,9 +56,6 @@ exports.handler = async (event, context) => {
         };
         
         // Add the keywordsMore parameter to params if provided
-        if (params && params.keywordsMore) {
-            console.log(`keywordsMore provided for ${operation}: ${params.keywordsMore.substring(0, 50)}${params.keywordsMore.length > 50 ? '...' : ''}`);
-        }
         
         // Check if required parameters are provided
         if (requiredParams[operation]) {

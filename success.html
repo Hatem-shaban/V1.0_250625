@@ -62,7 +62,7 @@
                 statusDiv.innerHTML = 'Sending welcome email...';
                 if (userEmail) {
                     try {
-                        console.log('Attempting to send welcome email to:', userEmail);
+                        // Removed console.log for production
                         const response = await fetch('/.netlify/functions/send-welcome-email', {
                             method: 'POST',
                             headers: {
@@ -75,13 +75,13 @@
                         });
 
                         const responseData = await response.json();
-                        console.log('Welcome email response:', responseData);
+                        // Removed console.log for production
 
                         if (!response.ok) {
                             console.error('Failed to send welcome email:', responseData);
                             throw new Error('Failed to send welcome email: ' + (responseData.error || ''));
                         } else {
-                            console.log('Welcome email sent successfully');
+                            // Removed console.log for production
                             statusDiv.innerHTML = 'Welcome email sent successfully...';
                         }
                     } catch (error) {
@@ -90,6 +90,7 @@
                         statusDiv.innerHTML = 'Welcome email sending failed (will retry later)...';
                     }
                 } else {
+                    // Log critical errors only
                     console.error('No user email found in localStorage');
                 }
 

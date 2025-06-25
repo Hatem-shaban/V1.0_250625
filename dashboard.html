@@ -961,7 +961,7 @@
             
             // Store plan type for dashboard customization
             userPlanType = user.plan_type || 'basic';
-            console.log('User plan type:', userPlanType);
+            // Removed console.log for production
             
             // Apply plan-specific UI customization
             applyPlanSpecificUI(userPlanType);
