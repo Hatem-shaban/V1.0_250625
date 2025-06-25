@@ -21,8 +21,6 @@
                 document.querySelectorAll('[data-checkout-button]').forEach(button => {
                     button.disabled = false;
                 });
-                
-                console.log('StartupStack initialized successfully');
             } catch (error) {
                 console.error('Failed to initialize StartupStack:', error);
                 showNotification('Failed to initialize application', 'error');
